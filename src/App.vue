@@ -1,32 +1,46 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <section class="hero is-black is-bold is-fullheight">
+      <!-- Hero head: will stick at the top -->
+      <div class="hero-head">
+        <header class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <router-link class="navbar-item" to="/">
+                  <img alt="Vue logo" src="./assets/tiny-doors-logo.png">
+              </router-link>
+            </div>
+            </div>
+        </header>
+      </div>
+
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <router-view/>
+      </div>
+  </div>
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot has-text-centered">
+   <p class="is-1">PWA 2019</p>
+  </div>
+</section>
   </div>
 </template>
 
+
+<script>
+ /* import index from '@/components/Index.vue'*/
+  export default{
+    name: 'app',
+    components:{
+
+      
+    }
+  }
+</script>
+
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
