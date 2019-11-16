@@ -21,9 +21,9 @@
       </div>
   </div>
   <!-- Hero footer: will stick at the bottom -->
-  <div class="hero-foot has-text-centered">
-   <p class="is-1">PWA 2019</p>
-  </div>
+<!--   <div class="hero-foot has-text-right">
+   <p class="is-size-7 has-text-grey-light">2019&nbsp;&nbsp;</p>
+  </div> -->
 </section>
   </div>
 </template>
