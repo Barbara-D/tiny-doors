@@ -15,7 +15,7 @@
 		<div v-for="n in 8" :key="n" class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img id="i1" src="https://bulma.io/images/placeholders/128x128.png">
+					<img :id="n" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>
@@ -42,7 +42,7 @@ export default {
       if (this.kos)
       {
 		this.msg="You picked up a crumpled paper ball from the bin!";
-		let i1=document.getElementById("i1");
+		let i1=document.getElementById("1");
 		// i1.src="../assets/l1.png";
 		i1.src="http://atlas-content-cdn.pixelsquid.com/stock-images/crumpled-paper-n1KArDA-600.jpg";
       }
