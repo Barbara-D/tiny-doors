@@ -3,7 +3,6 @@
 		<b>LEVEL 1</b><br/>
 		<i>{{ msg }} </i><br/><br/>
 		<div class="l1-parent">
-			
 			<img class="imgl1" src="../assets/l1.png">
 			<div :class="{ 'is-active': kos === true }" class="l1-kos hov"
 			@click.once="kosM"
@@ -13,7 +12,7 @@
 		</div>
 
 	<div class="columns is-mobile is-1 is-variable">
-		<div class="column">
+		<div v-for="n in 8" :key="n" class="column">
 			<div class="inventory">
 				<div class="image is-square">
 					<img id="i1" src="https://bulma.io/images/placeholders/128x128.png">
@@ -21,61 +20,6 @@
 			</div>
 		</div>
 
-	<div class="column">
-			<div class="inventory">
-				<div class="image is-square">
-					<img id="i2" src="https://bulma.io/images/placeholders/128x128.png">
-				</div>
-			</div>
-		</div>
-
-	<div class="column">
-			<div class="inventory">
-				<div class="image is-square">
-					<img id="i3" src="https://bulma.io/images/placeholders/128x128.png">
-				</div>
-			</div>
-		</div>	
-
-	<div class="column">
-			<div class="inventory">
-				<div class="image is-square">
-					<img id="i4" src="https://bulma.io/images/placeholders/128x128.png">
-				</div>
-			</div>
-		</div>	
-
-				<div class="column">
-			<div class="inventory">
-				<div class="image is-square">
-					<img id="i5" src="https://bulma.io/images/placeholders/128x128.png">
-				</div>
-			</div>
-		</div>
-
-	<div class="column">
-			<div class="inventory">
-				<div class="image is-square">
-					<img id="i6" src="https://bulma.io/images/placeholders/128x128.png">
-				</div>
-			</div>
-		</div>
-
-	<div class="column">
-			<div class="inventory">
-				<div class="image is-square">
-					<img id="i7" src="https://bulma.io/images/placeholders/128x128.png">
-				</div>
-			</div>
-		</div>	
-
-	<div class="column">
-			<div class="inventory">
-				<div class="image is-square">
-					<img id="i7" src="https://bulma.io/images/placeholders/128x128.png">
-				</div>
-			</div>
-		</div>
 	</div>
 
 
