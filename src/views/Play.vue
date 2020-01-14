@@ -4,9 +4,9 @@
 			<div class="column is-8 is-offset-2">
 				<lvl1></lvl1>
 
-		<br/><b-button type="is-info" size="is-medium" icon-left="arrow-left-bold" tag="router-link" to="/" outlined>GO BACK</b-button>
+				<br/><b-button type="is-info" size="is-medium" icon-left="arrow-left-bold" tag="router-link" to="/" outlined>GO BACK</b-button>
+			</div>
 		</div>
-</div>
 	</div>
 </template>
 
