@@ -3,9 +3,10 @@
 		<b>LEVEL 1</b><br/>
 		<i>{{ msg }} </i><br/><br/>
 		<div class="l1-parent">
+			
 			<img class="imgl1" src="../assets/l1.png">
 			<div :class="{ 'is-active': kos === true }" class="l1-kos hov"
-			@click="kosM"
+			@click.once="kosM"
 			@mouseover="hover=true"
 			@mouseleave="hover=false">
 			</div>
@@ -23,7 +24,7 @@
 	<div class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img src="https://bulma.io/images/placeholders/128x128.png">
+					<img id="i2" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>
@@ -31,7 +32,7 @@
 	<div class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img src="https://bulma.io/images/placeholders/128x128.png">
+					<img id="i3" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>	
@@ -39,7 +40,7 @@
 	<div class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img src="https://bulma.io/images/placeholders/128x128.png">
+					<img id="i4" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>	
@@ -47,7 +48,7 @@
 				<div class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img src="https://bulma.io/images/placeholders/128x128.png">
+					<img id="i5" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>
@@ -55,7 +56,7 @@
 	<div class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img src="https://bulma.io/images/placeholders/128x128.png">
+					<img id="i6" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>
@@ -63,7 +64,7 @@
 	<div class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img src="https://bulma.io/images/placeholders/128x128.png">
+					<img id="i7" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>	
@@ -71,7 +72,7 @@
 	<div class="column">
 			<div class="inventory">
 				<div class="image is-square">
-					<img src="https://bulma.io/images/placeholders/128x128.png">
+					<img id="i7" src="https://bulma.io/images/placeholders/128x128.png">
 				</div>
 			</div>
 		</div>
@@ -98,7 +99,8 @@ export default {
       {
 		this.msg="You picked up a crumpled paper ball from the bin!";
 		let i1=document.getElementById("i1");
-		i1.src="../assets/l1.png";
+		// i1.src="../assets/l1.png";
+		i1.src="http://atlas-content-cdn.pixelsquid.com/stock-images/crumpled-paper-n1KArDA-600.jpg";
       }
 
     }
