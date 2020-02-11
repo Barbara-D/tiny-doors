@@ -8,7 +8,7 @@
 <div class="column is-three-fifths is-offset-one-fifth">
 <div class="columns is-mobile is-5-desktop is-2-mobile is-variable">
 <div class="column is-3 is-primary">
-	<b-button size="is-large" type="is-info" expanded>1</b-button>
+	<b-button size="is-large" type="is-info" expanded tag="router-link" to="/play">1</b-button>
 </div>
 <div class="column is-3">
 	<b-button size="is-large" type="is-info" expanded>2</b-button>
