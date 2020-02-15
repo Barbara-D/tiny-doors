@@ -8,16 +8,16 @@
 <div class="column is-three-fifths is-offset-one-fifth">
 <div class="columns is-mobile is-5-desktop is-2-mobile is-variable">
 <div class="column is-3 is-primary">
-	<b-button size="is-large" type="is-info" expanded tag="router-link" to="/play">1</b-button>
+	<b-button size="is-large" type="is-info" expanded tag="router-link" to="/play/lvl1">1</b-button>
 </div>
 <div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded>2</b-button>
+	<b-button size="is-large" type="is-info" expanded tag="router-link" to="/play/lvl2">2</b-button>
 </div>
 <div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded>3</b-button>
+	<b-button size="is-large" type="is-info" expanded @click="alert">3</b-button>
 </div>
 <div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded>4</b-button>
+	<b-button size="is-large" type="is-info" expanded @click="alert">4</b-button>
 </div>
 </div>
 </div>
@@ -26,16 +26,16 @@
 <div class="column is-three-fifths is-offset-one-fifth">
 <div class="columns is-mobile is-5-desktop is-2-mobile  is-variable">
 <div class="column is-3 is-primary">
-	<b-button size="is-large" type="is-info" expanded>5</b-button>
+	<b-button size="is-large" type="is-info" expanded @click="alert">5</b-button>
 </div>
 <div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded>6</b-button>
+	<b-button size="is-large" type="is-info" expanded @click="alert">6</b-button>
 </div>
 <div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded>7</b-button>
+	<b-button size="is-large" type="is-info" expanded @click="alert">7</b-button>
 </div>
 <div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded>8</b-button>
+	<b-button size="is-large" type="is-info" expanded @click="alert">8</b-button>
 </div>
 </div>
 </div>
@@ -48,8 +48,12 @@
 
 export default{
 name: 'levels',
-components:{
-
+components:{},
+methods:{
+	alert()
+	{
+		this.$buefy.dialog.alert("I haven't programmed that path yet")
+	}
 }
 }
 </script>

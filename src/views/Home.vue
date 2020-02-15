@@ -5,7 +5,7 @@
                 <br/>
                 
     
-                  <b-button type="is-info is-large" icon-left="gamepad-variant" expanded tag="router-link" to="/play">PLAY</b-button><br/><br/>
+                  <b-button type="is-info is-large" icon-left="gamepad-variant" expanded tag="router-link" to="/play/lvl1">PLAY</b-button><br/><br/>
                   <b-button type="is-info is-large" icon-left="eye" expanded outlined tag="router-link" to="/help">HELP</b-button><br/><br/>
                   <b-button type="is-info is-large" icon-left="layers" expanded outlined tag="router-link" to="/levels">LEVELS</b-button><br/>
               </div>

@@ -1,6 +1,7 @@
 <template>
 	<div id="lvl1">
 		<b>LEVEL 1</b><br/>
+
 		<i>{{ msg }} </i><br/><br/>
 		<div class="l1-parent">
 			<img class="imgl1" src="../assets/l1.png">
@@ -36,6 +37,9 @@
       </div>
       <div class="l1-loc hov" @click="locM" 
       @mouseover="hover=true" @mouseleave="hover=false"></div>
+      <div class="l1-door hov" @click="doorM" 
+      @mouseover="hover=true" @mouseleave="hover=false"
+      ><b-button :class="{'is-active':door=== true}" class="next2" type="is-info" tag="router-link" to="/play/lvl2">2</b-button></div>
 		</div>
 
 	<div class="columns is-mobile is-1 is-variable">
@@ -67,6 +71,8 @@ export default {
       map:true,
       safe:false,
       loc:true,
+      glue: false,
+      door:false,
       msg: "Look around the room by clicking on objects!",
     };
   },
@@ -180,7 +186,7 @@ export default {
       if(!this.dra)
       {
         this.dra=true;
-        this.msg="You found a round metal piece. Part of a key perhaps?"
+        this.msg="You found a tiny metal piece. Part of a key perhaps?"
         let i4=document.getElementById("4");
         i4.src="https://i.imgur.com/HC4orAK.jpg";
         //i4.src="https://i.imgur.com/kKmsElI.jpg";<fullkey
@@ -214,7 +220,7 @@ export default {
                       {
                         this.$buefy.toast.open("Safe unlocked!");
                         this.safe=true;
-                        this.msg="You have unlocked the safe and found a metal piece!";
+                        this.msg="You have unlocked the safe and found a tiny metal piece!";
                         let i5=document.getElementById("5");
                         i5.src="https://i.imgur.com/xN0uNmI.jpg";
                       }
@@ -233,24 +239,43 @@ export default {
         }
         else if (this.loc)
         {
-          this.msg="This desk drawer is locked. Try finding a key.";
+          this.msg="This desk drawer is locked. Try looking for a key.";
         }
         else this.msg="Nothing else inside."
       },
+    doorM()
+    {
+      if (document.getElementById("8").classList.contains("inv-sel"))
+      {
+          this.$buefy.toast.open("Doors unlocked!");
+          this.msg="Click on the door again to get to level 2."
+          this.door=true;
+      }
+      else this.msg="This seems to be the exit, but it's locked.";
+    },
 
     //pw=T1D00r5
     inventory(n)
     {
+      //toggling the selected item class
+      let current=document.getElementById(n);
+      if (n!=4 && n!=5) this.glue=false;
+      for (let i=1; i<=8; i++)
+      {
+        let temp=document.getElementById(i);
+        if (i!=n && temp.src!="https://newpathways.org/wp-content/uploads/2015/02/48164948_l.jpg") 
+          temp.classList.remove("inv-sel");
+        else if (i==n && temp.src!="https://newpathways.org/wp-content/uploads/2015/02/48164948_l.jpg")
+          current.classList.toggle("inv-sel");
+      }
+      
       if (n==1 && this.img1)
       {
         this.msg="The writing on the paper says: 'T1D0'...but the rest of it seems to be torn off.";
       }
       else if (n==2 && this.box)
       {
-        this.msg="You have selected the scissors. Click on where you want to use them in the scene.";
-        let current=document.getElementById(n);
-        current.classList.toggle("inv-sel");
-        document.getElementById(4).classList.remove("inv-sel");        
+        this.msg="You have selected the scissors. Click on where you want to use them in the scene.";      
         if (!current.classList.contains("inv-sel"))
         {
           this.msg="";
@@ -264,30 +289,59 @@ export default {
       }
       else if (n==4 && this.dra)
       {
-        this.msg="You have selected the metal part."
-        let current=document.getElementById(n);
-        current.classList.toggle("inv-sel");
-        document.getElementById(2).classList.remove("inv-sel");
-        document.getElementById(5).classList.remove("inv-sel");
-        document.getElementById(6).classList.remove("inv-sel");
+        this.msg="You have selected the tiny metal part, but it is useless right now."
         if (!current.classList.contains("inv-sel"))
         {
           this.msg="";
+        }
+        else if (this.glue)
+        {
+          document.getElementById("8").src="https://i.imgur.com/kKmsElI.jpg";
+          document.getElementById("5").src="https://newpathways.org/wp-content/uploads/2015/02/48164948_l.jpg";
+          document.getElementById("4").src="https://newpathways.org/wp-content/uploads/2015/02/48164948_l.jpg";
+          this.msg="You have successfully glued the key pieces together.";
+          current.classList.remove("inv-sel");
+        }
+      }
+      else if (n==5 && this.safe)
+      {
+        this.msg="If you tried using this piece on its own it would just get stuck in the lock."
+        if (!current.classList.contains("inv-sel"))
+        {
+          this.msg="";
+        }
+        else if (this.glue)
+        {
+          document.getElementById("8").src="https://i.imgur.com/kKmsElI.jpg";
+          document.getElementById("5").src="https://newpathways.org/wp-content/uploads/2015/02/48164948_l.jpg";
+          document.getElementById("4").src="https://newpathways.org/wp-content/uploads/2015/02/48164948_l.jpg";
+          this.msg="You have successfully glued the key pieces together.";
+          current.classList.remove("inv-sel");
         }
       }
       else if (n==6 && this.pilopen)
       {
         this.msg="You have selected the keys. Try unlocking something."
-        let current=document.getElementById(n);
-        current.classList.toggle("inv-sel");
-        document.getElementById(2).classList.remove("inv-sel");
-        document.getElementById(4).classList.remove("inv-sel");
-        document.getElementById(5).classList.remove("inv-sel");
         if (!current.classList.contains("inv-sel"))
         {
           this.msg="";
         }
       }
+      else if (n==7 && !this.loc)
+      {
+        this.msg="You have selected the glue. Click on something to use it.";
+        this.glue=true;
+        if (!current.classList.contains("inv-sel"))
+        {
+          this.msg="";
+          this.glue=false;
+        }
+      }
+      else if (n==8 && current.src!="https://newpathways.org/wp-content/uploads/2015/02/48164948_l.jpg")
+      {
+        this.msg="You have selected the tiny key.";
+      }
+      if (!current.classList.contains("inv-sel")) this.msg="";
     }
   }
 };
@@ -303,14 +357,14 @@ export default {
 }
 
 .l1-kos {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 7.5%; height: 18%;
   position: absolute; left: 50%; top: 59%;
   transition: 300ms;
 }
 .l1-lap
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 11%; height: 19%;
   position: absolute; left: 77%; top: 28%;
   transition: 300ms;
@@ -318,77 +372,84 @@ export default {
 
 .l1-car
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 9%; height: 9%;
   position: absolute; left: 6%; top: 48%;
   transition: 300ms;
 }
 .l1-lbox
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 10%; height: 13%;
   position: absolute; left: 4%; top: 60%;
   transition: 300ms;
 }
 .l1-rbox
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 10%; height: 13%;
   position: absolute; left: 15%; top: 60%;
   transition: 300ms;
 }
 .l1-pil
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 13%; height: 15%;
   position: absolute; left: 32%; top: 60%;
   transition: 300ms;
 }
 .l1-note
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 7%; height: 10%;
   position: absolute; left: 61%; top: 38%;
   transition: 300ms;
 }
 .l1-book1
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 21%; height: 13%;
   position: absolute; left: 4%; top: 13%;
   transition: 300ms;
 }
 .l1-book2
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 21%; height: 13%;
   position: absolute; left: 4%; top: 28%;
   transition: 300ms;
 }
 .l1-book3
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 8%; height: 11%;
   position: absolute; left: 17%; top: 45%;
   transition: 300ms;
 }
 .l1-dra
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 7.5%; height: 15%;
   position: absolute; left: 59%; top: 62%;
   transition: 300ms;
 }
 .l1-loc
 {
-  background: rgb(202, 201, 201); opacity: 0.3;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 7.5%; height: 15%;
   position: absolute; left: 84%; top: 62%;
   transition: 300ms;
 }
+.l1-door
+{
+  background: rgb(202, 201, 201); opacity: 1;
+  width: 4%; height: 8%;
+  position: absolute; left: 93.5%; top: 57%;
+  transition: 300ms;
+}
 #l1-map
 {
-  background: rgb(248, 224, 188); opacity: 0.3;
+  background: rgb(248, 224, 188); opacity: 0;
   width: 26%; height: 26%;
   position: absolute; left: 31%; top: 4%;
   transition: 1000ms;
@@ -397,6 +458,9 @@ export default {
 
 .hov{cursor:pointer;}
 .l1-kos.is-active {opacity: 0;}
+.next2{visibility: hidden;}
+.next2.is-active{visibility: visible;   transition: 1000ms;
+}
 
 .inventory{border-radius: 10%; padding: 10%; background:white; text-align: center;}
 
@@ -406,107 +470,4 @@ export default {
 }
 
 </style>
-
-<!-- <p v-if=“vrata”>Pokazi ovaj paragraf ako su vrata otvorena</p>
- -->
-
-<!--<template>
-	<div class="card">
-			<header class="card-header">
-				<p class="card-header-title is-right">
-					Level 1
-				</p>
-			</header>
-			<div class="mapa-parent">
-      {{ kutija }}
-      <img class="mapa" src="../assets/l1.png">
-      <div :class="{ 'is-active': kutija === true }" @click="openChest" class="mapa-kutija"></div>
-    </div>
-	<div class="card-image">
-				<figure class="image is-16by9 parnt">
-					<img src="../assets/l1.png" alt="Level image" class="mapa">
-					<div :class="{ 'is-active': kutija === true }" @click="openChest" class="mapa-kutija">
-					</div>
-				</figure>
-
-			</div> 
-			<div class="card-content">
-				Click on something in the room.
-			</div>
-			<footer class="card-footer">
-				<span class="card-footer-item">Inventory:</span>
-				<a href="#" class="card-footer-item">1</a>
-				<a href="#" class="card-footer-item">2</a>
-				<a href="#" class="card-footer-item">3</a>
-				<a href="#" class="card-footer-item">4</a>
-				<a href="#" class="card-footer-item">5</a>
-				<a href="#" class="card-footer-item">6</a>
-			</footer>
-	</div>
-</template>
-
-<script>
-export default {
-  name: "App",
-  data() {
-    return {
-      kutija: false
-    };
-  },
-  methods: {
-    openChest() {
-      this.kutija = !this.kutija;
-    }
-  }
-};
-</script>
-
-<style>
-.mapa-parent {
-  position: relative;
-}
-
-.mapa {
-  max-width: 100%;
-}
-
-.mapa-kutija {
-  background: rgb(202, 201, 201);
-  opacity: 1;
-  width: 50%;
-  height: 50%;
-  position: absolute;
-  left: 43%;
-  top: 38%;
-  transition: 300ms;
-}
-
-.mapa-kutija.is-active {
-  opacity: 0;
-}
-
-
-
-
- <map name="image-map">
-    <area target="" alt="doors" title="doors" href="" coords="1207,424,1246,482" shape="rect">
-    <area target="" alt="desk-cabinet" title="desk-cabinet" href="" coords="1173,572,1071,444" shape="rect">
-    <area target="" alt="drawer1" title="drawer1" href="" coords="753,448,855,487" shape="rect">
-    <area target="" alt="drawer2" title="drawer2" href="" coords="854,524,754,489" shape="rect">
-    <area target="" alt="drawer3" title="drawer3" href="" coords="853,564,755,528" shape="rect">
-    <area target="" alt="desk-books" title="desk-books" href="" coords="754,397,853,427" shape="rect">
-    <area target="" alt="laptop" title="laptop" href="" coords="1031,196,1130,240,1113,313,1065,361,964,314,1015,274" shape="poly">
-    <area target="" alt="mouse" title="mouse" href="" coords="1127,355,1148,340,1132,328,1115,341,1115,352" shape="poly">
-    <area target="" alt="desk-notebook" title="desk-notebook" href="" coords="779,298,837,280,873,318,873,332,816,349,777,312" shape="poly">
-    <area target="" alt="pencil" title="pencil" href="" coords="888,293,903,294,900,319,886,331" shape="poly">
-    <area target="" alt="wall-map" title="wall-map" href="" coords="404,28,717,217" shape="rect">
-    <area target="" alt="bin" title="bin" href="" coords="642,451,670,434,707,436,731,448,736,468,724,545,706,559,678,559,654,549,642,472" shape="poly">
-    <area target="" alt="pillows" title="pillows" href="" coords="404,460,454,445,530,417,581,459,585,474,575,480,586,535,572,546,446,544,407,535" shape="poly">
-    <area target="" alt="books1" title="books1" href="" coords="53,99,317,191" shape="rect">
-    <area target="" alt="books2" title="books2" href="" coords="51,211,318,302" shape="rect">
-    <area target="" alt="books3" title="books3" href="" coords="215,328,317,409" shape="rect">
-    <area target="" alt="toy-car" title="toy-car" href="" coords="79,393,100,361,111,358,141,363,154,371,185,382,172,401,160,416,142,416,93,404" shape="poly">
-    <area target="" alt="box-l" title="box-l" href="" coords="55,440,181,526" shape="rect">
-    <area target="" alt="box-r" title="box-r" href="" coords="185,440,314,527" shape="rect">
-</map> -->
 
