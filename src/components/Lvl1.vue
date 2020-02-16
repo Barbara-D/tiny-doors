@@ -33,7 +33,7 @@
       @mouseover="hover=true" @mouseleave="hover=false"></div>
       <div id="l1-map" class="hov" @click="mapM" 
       @mouseover="hover=true" @mouseleave="hover=false">
-        <img id="safe" src="https://lh3.googleusercontent.com/proxy/4tbFfnaQUZGC3UTV4XPn7X68D3I6L9tHgWqp5UZXA2jYpTDbYIgxkw7WvloNWkMoiPLr4VzEYwYtwxcnZmKD_WkE1lFvD7wpl1amQgYRjQ" width="50%"/>
+        <img id="safe" src="../assets/safe.png" width="50%"/>
       </div>
       <div class="l1-loc hov" @click="locM" 
       @mouseover="hover=true" @mouseleave="hover=false"></div>
@@ -227,7 +227,8 @@ export default {
                       else
                         this.$buefy.toast.open("Wrong PIN!");
                     }
-       })}else this.msg="The safe is empty!";
+       })}
+          else this.msg="The safe is empty!";
       },
       locM()
       {
@@ -442,7 +443,7 @@ export default {
 }
 .l1-door
 {
-  background: rgb(202, 201, 201); opacity: 1;
+  background: rgb(202, 201, 201); opacity: 0;
   width: 4%; height: 8%;
   position: absolute; left: 93.5%; top: 57%;
   transition: 300ms;
@@ -459,8 +460,7 @@ export default {
 .hov{cursor:pointer;}
 .l1-kos.is-active {opacity: 0;}
 .next2{visibility: hidden;}
-.next2.is-active{visibility: visible;   transition: 1000ms;
-}
+.next2.is-active{visibility: visible;   transition: 1000ms;}
 
 .inventory{border-radius: 10%; padding: 10%; background:white; text-align: center;}
 

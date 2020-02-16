@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Lvl0 from '../components/Lvl0.vue'
 import Lvl1 from '../components/Lvl1.vue'
 import Lvl2 from '../components/Lvl2.vue'
 
@@ -30,6 +31,7 @@ const routes = [
     name: 'play',
     component: () => import('../views/Play.vue'),
     children:[    
+    {path: 'lvl0',name: 'lvl0',component: Lvl0},
     {path: 'lvl1',name: 'lvl1',component: Lvl1},
     {path: 'lvl2',name: 'lvl2',component: Lvl2},
     ]

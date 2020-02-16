@@ -8,6 +8,9 @@
 <div class="column is-three-fifths is-offset-one-fifth">
 <div class="columns is-mobile is-5-desktop is-2-mobile is-variable">
 <div class="column is-3 is-primary">
+	<b-button size="is-large" type="is-info" expanded tag="router-link" to="/play/lvl0">0</b-button>
+</div>
+<div class="column is-3">
 	<b-button size="is-large" type="is-info" expanded tag="router-link" to="/play/lvl1">1</b-button>
 </div>
 <div class="column is-3">
@@ -16,9 +19,6 @@
 <div class="column is-3">
 	<b-button size="is-large" type="is-info" expanded @click="alert">3</b-button>
 </div>
-<div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded @click="alert">4</b-button>
-</div>
 </div>
 </div>
 </div>
@@ -26,6 +26,9 @@
 <div class="column is-three-fifths is-offset-one-fifth">
 <div class="columns is-mobile is-5-desktop is-2-mobile  is-variable">
 <div class="column is-3 is-primary">
+	<b-button size="is-large" type="is-info" expanded @click="alert">4</b-button>
+</div>
+<div class="column is-3">
 	<b-button size="is-large" type="is-info" expanded @click="alert">5</b-button>
 </div>
 <div class="column is-3">
@@ -33,9 +36,6 @@
 </div>
 <div class="column is-3">
 	<b-button size="is-large" type="is-info" expanded @click="alert">7</b-button>
-</div>
-<div class="column is-3">
-	<b-button size="is-large" type="is-info" expanded @click="alert">8</b-button>
 </div>
 </div>
 </div>
